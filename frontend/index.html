@@ -11,7 +11,28 @@
         <script src="./index.js"></script>
     </head>
     <body>
-        <table>
+        <div class="centerHead">
+            <h3>Arrivals</h3>
+            <div id="checkContainer">
+                <div class="checkOption">
+                    <p>FI</p>
+                    <input type="checkbox" onchange="filterArrival('AirlineIATA','FI', 'arrivalFiCheck')" id="arrivalFiCheck">
+                </div>
+                <div class="checkOption">
+                    <p>D gates</p>
+                    <input type="checkbox" onchange="filterArrival('Gate', 'D', 'arrivalDGate')" id="arrivalDGate">
+                </div>
+                <div class="checkOption">
+                    <p>A gates</p>
+                    <input type="checkbox" onchange="filterArrival('Gate', 'A', 'arrivalAGate')" id="arrivalAGate">
+                </div>
+                <div class="checkOption">
+                    <p>C gates</p>
+                    <input type="checkbox" onchange="filterArrival('Gate', 'C', 'arrivalCGate')" id="arrivalCGate">
+                </div>
+            </div>
+        </div>
+        <table class="flightTable">
             <thead>
                 <th>Flight</th>
                 <th>A/C Type</th>
@@ -25,6 +46,44 @@
                 <th>Gate</th>
             </thead>
             <tbody id = "arrivalData">
+                <!-- populate from the javascript.. -->
+            </tbody>
+        </table>
+        <div class="centerHead">
+            <h3>Departures</h3>
+            <div id="checkContainer">
+                <div class="checkOption">
+                    <p>FI</p>
+                    <input type="checkbox" onchange="filterDepartures('AirlineIATA','FI', 'depFiCheck')" id="depFiCheck">
+                </div>
+                <div class="checkOption">
+                    <p>D gates</p>
+                    <input type="checkbox" onchange="filterDepartures('Gate', 'D', 'departureDGate')" id="departureDGate">
+                </div>
+                <div class="checkOption">
+                    <p>A gates</p>
+                    <input type="checkbox" onchange="filterDepartures('Gate', 'A', 'departureAGate')" id="departureAGate">
+                </div>
+                <div class="checkOption">
+                    <p>C gates</p>
+                    <input type="checkbox" onchange="filterDepartures('Gate', 'C', 'departureCGate')" id="departureCGate">
+                </div>
+            </div>
+        </div>
+        <table class="flightTable">
+            <thead>
+                <th>Flight</th>
+                <th>A/C Type</th>
+                <th>A/C Reg</th>
+                <th>Origin</th>
+                <th>STD</th>
+                <th>ETD</th>
+                <th>Status</th>
+                <th>Stand</th>
+                <th>Belt</th>
+                <th>Gate</th>
+            </thead>
+            <tbody id = "departureData">
                 <!-- populate from the javascript.. -->
             </tbody>
         </table>

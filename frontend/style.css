@@ -1,3 +1,45 @@
-table, th, td {
-    border: 1px solid black;
+.flightTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width:100%;
+}
+
+.flightTable td, .flightTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.flightTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.flightTable tr:hover {
+    background-color: #ddd;
+}
+
+.flightTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.centerHead {
+    display: flex;
+    flex-direction: column;
+    min-width: 647px;
+}
+
+.centerHead > h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 46%;
+}
+
+.checkOption, #checkContainer {
+    display:flex;
+}
+
+#checkContainer {
+    gap:20px;
 }
