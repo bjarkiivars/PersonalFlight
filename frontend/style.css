@@ -34,12 +34,62 @@
 .centerHead > h3 {
     font-family: Arial, Helvetica, sans-serif;
     padding-left: 46%;
+    font-size: 4vh;
 }
 
-.checkOption, #checkContainer {
+.checkOption, #checkContainerDep, #checkContainerArr {
     display:flex;
+    flex-wrap: wrap;
 }
 
-#checkContainer {
+#checkContainerDep, #checkContainerArr {
     gap:20px;
+    padding-left: 30%;
+}
+
+.checkOption > p {
+    font-size: 3vh;
+}
+
+.checkOption > input {
+    width:30px;
+}
+
+#departureData, #arrivalData > tr {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#departureData, #arrivalData > tr.show {
+    opacity: 1;
+}
+
+.mainHeader {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding-left: 40%;
+}
+
+.mainHeader > img {
+    width: 22px;
+    height: 24px;
+}
+
+.mainHeader > h3 {
+    font-size:45px;
+}
+
+
+/* Adjust with the screen size, make it so that we display flex after a certain amount*/
+@media screen and (min-width: 1676px) {
+    #contentWrapper {
+        display: flex;
+        gap: 1%;
+        flex-wrap: wrap;
+    }
+
+    #arrivalWrapper, #depWrapper {
+        width:49%;
+    }
 }

@@ -24,6 +24,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Test data
 let arrivals = [
     {
         "Id": 1143537, 
@@ -87,6 +88,7 @@ let arrivals = [
     }
 ];
 
+// Test data
 let departures = [
     {
         "Id":1143880,
@@ -180,6 +182,7 @@ let departures = [
     }
 ];
 
+// Test data
 let flights = [
     {
         "Id": 1143537, 
@@ -364,6 +367,7 @@ app.get(apiPath + version + '/flights', (req, res) => {
 // filter[No]=FI&filter[Name]=Finland
 app.get(apiPath + version + '/arrivals/flights', async (req, res) => {
     try {
+        // Call to the Isavia API to get flight information
         const response = await axios.get('https://www.isavia.is/fids/arrivals.aspx');
         
         const data = response.data.Items;
@@ -375,6 +379,9 @@ app.get(apiPath + version + '/arrivals/flights', async (req, res) => {
             const filterArrivals = data.filter(obj => {
                 
                 return Object.keys(filter).every(key => {
+                    if(filter[key].toString().includes('outside')) {
+                        return obj.hasOwnProperty('Stand') && parseInt(obj['Stand']) > 14;
+                    }
                     return obj.hasOwnProperty(key) && obj[key].toString().includes(filter[key].toString());
                 });
             });
@@ -400,6 +407,9 @@ app.get(apiPath + version + '/departures/flights', async (req, res) => {
         } else {
             const filterDepartures = data.filter(obj => {
                 return Object.keys(filter).every(key => {
+                    if(filter[key].toString().includes('outside')) {
+                        return obj.hasOwnProperty('Stand') && parseInt(obj['Stand']) > 14;
+                    }
                     return obj.hasOwnProperty(key) && obj[key].toString().includes(filter[key].toString());
                 });
             });
@@ -413,23 +423,11 @@ app.get(apiPath + version + '/departures/flights', async (req, res) => {
 });
 
 
-// Get the frontpage from index.html
-app.get("/", (req, res) => {
-    const filePath = path.join(__dirname, '..', 'frontend', 'index.html');
-    res.sendFile(filePath);
-});
+// Serve the frontend as a static file, so we can access all of it's children
+app.use(express.static(path.join(__dirname, "..", "frontend")));
 
-// Enable access to the css
-app.get("/style.css", (req, res) => {
-    const filePath = path.join(__dirname, '..', 'frontend', 'style.css');
-    res.sendFile(filePath);
-});
-
-// Enable access to the frontend js
-app.get("/index.js", (req, res) => {
-    const filePath = path.join(__dirname, '..', 'frontend', 'index.js');
-    res.sendFile(filePath);
-});
+// Serve the img folder as a static folder and we can access all of it's children from here.
+app.use("/img", express.static(path.join(__dirname, "..", "frontend", "img")));
 
 
 //Default: Not supported
