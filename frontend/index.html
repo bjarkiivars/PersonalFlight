@@ -13,36 +13,39 @@
     </head>
     <body>
         <div id="contentWrapper">
-            <div id="arrivalWrapper">
-                <!-- A division to center the header -->
-                <div class="centerHead">
-                    <div class="mainHeader">
-                        <h3>Arrivals</h3>
-                        <img src="/img/minimize.png" alt="Image of a minus button" id="minArr"> 
-                    </div>
-                    <div id="checkContainerArr">
-                        <div class="checkOption">
-                            <p>FI</p>
-                            <input type="checkbox" id="1">
-                        </div>
-                        <div class="checkOption">
-                            <p>D gates</p>
-                            <input type="checkbox" id="2">
-                        </div>
-                        <div class="checkOption">
-                            <p>A gates</p>
-                            <input type="checkbox" id="3">
-                        </div>
-                        <div class="checkOption">
-                            <p>C gates</p>
-                            <input type="checkbox" id="4">
-                        </div>
-                        <div class="checkOption">
-                            <p>Outside stands</p>
-                            <input type="checkbox" id=5>
-                        </div>
-                    </div>
+            <div class="centerHead">
+                <div class="mainHeader">
+                    <h3>Arrivals</h3>
+                    <img src="/img/minimize.png" alt="Image of a minus button" id="minArr"> 
                 </div>
+                <div id="checkContainerArr">
+                    <div class="searchOption">
+                        <p>Search by:</p>
+                        <input type="text" id="searchArr" name="searchArr" placeholder="FI205../ copenhagen..">
+                    </div>
+                    <div class="checkOption">
+                        <p>FI</p>
+                        <input type="checkbox" id="1">
+                    </div>
+                    <div class="checkOption">
+                        <p>D gates</p>
+                        <input type="checkbox" id="2">
+                    </div>
+                    <div class="checkOption">
+                        <p>A gates</p>
+                        <input type="checkbox" id="3">
+                    </div>
+                    <div class="checkOption">
+                        <p>C gates</p>
+                        <input type="checkbox" id="4">
+                    </div>
+                    <div class="checkOption">
+                        <p>Outside stands</p>
+                        <input type="checkbox" id=5>
+                    </div>
+                </div> 
+            </div>
+            <div id="arrivalWrapper">
                 <!-- A table that displays Arrival information -->
                 <table class="flightTable">
                     <thead class="show">
@@ -62,40 +65,44 @@
                     </tbody>
                 </table>
             </div>
-            <div id="depWrapper">
-                <!-- A division to center the header -->
-                <div class="centerHead">
-                    <div class="mainHeader">
-                        <h3>Departures</h3>
-                        <img src="/img/minimize.png" alt="Image of a minus button" id="minDep"> 
+            <!-- A division to center the header -->
+            <div class="centerHead">
+                <div class="mainHeader">
+                    <h3>Departures</h3>
+                    <img src="/img/minimize.png" alt="Image of a minus button" id="minDep"> 
+                </div>
+                <div id="checkContainerDep">
+                    <div class="searchOption">
+                        <p>Search by:</p>
+                        <input type="text" id="searchDep" name="searchDep" placeholder="FI212../ copenhagen..">
                     </div>
-                    <div id="checkContainerDep">
-                        <div class="checkOption">
-                            <p>FI</p>
-                            <!-- onchange="filterDepartures('AirlineIATA','FI', 'depFiCheck')"  -->
-                            <input type="checkbox" id="1">
-                        </div>
-                        <div class="checkOption">
-                            <p>D gates</p>
-                            <!-- onchange="filterDepartures('Gate', 'D', 'departureDGate')" -->
-                            <input type="checkbox"  id="2">
-                        </div>
-                        <div class="checkOption">
-                            <p>A gates</p>
-                            <!-- onchange="filterDepartures('Gate', 'A', 'departureAGate')" -->
-                            <input type="checkbox"  id="3">
-                        </div>
-                        <div class="checkOption">
-                            <p>C gates</p>
-                            <!-- onchange="filterDepartures('Gate', 'C', 'departureCGate')" -->
-                            <input type="checkbox"  id="4">
-                        </div>
-                        <div class="checkOption">
-                            <p>Outside stands</p>
-                            <input type="checkbox" id=5>
-                        </div>
+                    <div class="checkOption">
+                        <p>FI</p>
+                        <!-- onchange="filterDepartures('AirlineIATA','FI', 'depFiCheck')"  -->
+                        <input type="checkbox" id="1">
+                    </div>
+                    <div class="checkOption">
+                        <p>D gates</p>
+                        <!-- onchange="filterDepartures('Gate', 'D', 'departureDGate')" -->
+                        <input type="checkbox"  id="2">
+                    </div>
+                    <div class="checkOption">
+                        <p>A gates</p>
+                        <!-- onchange="filterDepartures('Gate', 'A', 'departureAGate')" -->
+                        <input type="checkbox"  id="3">
+                    </div>
+                    <div class="checkOption">
+                        <p>C gates</p>
+                        <!-- onchange="filterDepartures('Gate', 'C', 'departureCGate')" -->
+                        <input type="checkbox"  id="4">
+                    </div>
+                    <div class="checkOption">
+                        <p>Outside stands</p>
+                        <input type="checkbox" id=5>
                     </div>
                 </div>
+            </div>
+            <div id="depWrapper">
                 <!-- A table to display the departure information -->
                 <table class="flightTable">
                     <thead class="show">

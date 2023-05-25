@@ -40,11 +40,11 @@
 .checkOption, #checkContainerDep, #checkContainerArr {
     display:flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 #checkContainerDep, #checkContainerArr {
     gap:20px;
-    padding-left: 30%;
 }
 
 .checkOption > p {
@@ -60,15 +60,17 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-#departureData, #arrivalData > tr.show {
+#departureData, #arrivalData > tr.showArrival {
     opacity: 1;
 }
+
 
 .mainHeader {
     display: flex;
     align-items: baseline;
     gap: 10px;
     padding-left: 40%;
+    height: 102px;
 }
 
 .mainHeader > img {
@@ -80,6 +82,21 @@
     font-size:45px;
 }
 
+.searchOption {
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.searchOption > p {
+    font-size:25px;
+}
+
+.searchOption > input {
+    height:35px;
+    position: relative;
+    top: 20px;
+    left: 5px;
+}
 
 /* Adjust with the screen size, make it so that we display flex after a certain amount*/
 @media screen and (min-width: 1676px) {

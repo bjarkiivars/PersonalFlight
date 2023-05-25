@@ -1,6 +1,10 @@
 // Here we are using constants as this should not be updated
 const API_URL = "http://localhost:3000/api/v1/";
 
+// Cache all the rows
+let cachedArrivalData = [];
+let cachedDepartureData = [];
+
 // Populate the DOM with table elements
 const createTable = (obj, tableEl) => {
     // table row element
@@ -8,6 +12,8 @@ const createTable = (obj, tableEl) => {
 
     let flNoEl = document.createElement('td');
     flNoEl.textContent = obj.No;
+    // Give the TD the ID of the flight number being passed
+    flNoEl.id = obj.No;
 
     let acTypeEl = document.createElement('td');
     acTypeEl.textContent = obj.AircraftType;
@@ -17,6 +23,8 @@ const createTable = (obj, tableEl) => {
 
     let originEl = document.createElement('td');
     originEl.textContent = obj.OriginDest;
+    // Give the TD the ID of the destination name
+    originEl.id = obj.OriginDest;
 
     let scheduleEl = document.createElement('td');
     scheduleEl.textContent = obj.Scheduled.slice(11, 16);
@@ -45,7 +53,11 @@ const createTable = (obj, tableEl) => {
     
     // Apply animation to the addition of my DOM elements
     setTimeout(() => {
-        trEl.classList.add('show');
+        if(tableEl.id == 'arrivalData') {
+            trEl.classList.add('showArrival');
+        } else {
+            trEl.classList.add('showDeparture');
+        }
     }, 100);
 
     trEl.appendChild(flNoEl);
@@ -58,6 +70,15 @@ const createTable = (obj, tableEl) => {
     trEl.appendChild(standEl);
     trEl.appendChild(baggageClaimEl);
     trEl.appendChild(gateEl);
+
+    if(tableEl.id == 'arrivalData') {
+        // Add the Table row to our cachedData for arrivals
+        cachedArrivalData.push(trEl);
+    } else {
+        // Add the table row to our cachedData for departures
+        cachedDepartureData.push(trEl);
+    }
+
 }
 
 // Needs some adjustment, we are trying to remove elements that do not exist
@@ -86,6 +107,13 @@ const removeTable = (elements) => {
     });
 };
 
+// Remove table V2
+const removeTableV2 = (flightObject) => {
+    while (flightObject.firstChild) {
+        flightObject.removeChild(flightObject.firstChild);
+    }
+}
+
 
 // If no filter is given, we display all flights.
 const getArrivals = async (filterStr = '') => {
@@ -96,7 +124,6 @@ const getArrivals = async (filterStr = '') => {
         response.data.forEach(obj => {
             createTable(obj, arrivalEl);
         });
-
     } 
     catch (error) {
         console.log(error);
@@ -115,6 +142,7 @@ const getDepartures = async (filterStr = '') => {
         response.data.forEach(obj => {
             createTable(obj, departureEl);
         });
+
     }
     catch (error) {
         console.log(error);
@@ -153,7 +181,7 @@ const initialize = async () => {
                 filterStr += filterQuery.query + '&';
             });
 
-            await removeTable(arrivalEl);
+            removeTableV2(arrivalEl);
             getArrivals(filterStr);
     };
 
@@ -180,7 +208,7 @@ const initialize = async () => {
         });
         
         // Repopulate the table
-        removeTable(departureEl);
+        removeTableV2(departureEl);
         getDepartures(filterStr);
     };
     
@@ -194,12 +222,14 @@ const initialize = async () => {
     // Once the minimize departures button is pressed, we hide the arrivals
     $( "#minArr" ).click(function() {
         if(arrDisplayed === true) {
-            $( "#arrivalData" ).hide( "slow", () => {
+            $('#arrivalWrapper').hide( "slow", () => {
+                $('#checkContainerArr').hide("slow");
                 arrDisplayed = false;
                 document.getElementById('minArr').src = '/img/maximize.png';
             });
         } else {
-            $('#arrivalData').show("sæpw", () => {
+            $('#arrivalWrapper').show("slow", () => {
+                $('#checkContainerArr').show("slow");
                 arrDisplayed = true;
                 document.getElementById('minArr').src='/img/minimize.png';
             })
@@ -212,19 +242,86 @@ const initialize = async () => {
     // Once we minimize the minimize button on departures we hide departures
     $( "#minDep" ).click(function() {
         if(depDisplayed === true) {
-            $( "#departureData" ).hide( "slow", () => {
+            $( "#depWrapper" ).hide( "slow", () => {
+                $('#checkContainerDep').hide("slow");
                 depDisplayed = false;
                 document.getElementById('minDep').src = '/img/maximize.png';
             });
         } else {
-            $('#departureData').show("slow", () => {
+            $('#depWrapper').show("slow", () => {
+                $('#checkContainerDep').show("slow");
                 depDisplayed = true;
                 document.getElementById('minDep').src = '/img/minimize.png';
             });
         }
         
     });
+
+    // Search for Arrivals
+    const searchArrEl = document.getElementById('searchArr');
+
+    searchArrEl.addEventListener('input', () => {
+        searchArrival(searchArrEl.value);
+    });
+
+    const searchArrival = (input) => {
+        //const arrivalList = document.querySelectorAll('.showArrival');
+        let searchedArrList = [];
+        
+        cachedArrivalData.forEach(arrival => {
+            // childNodes[3] is the name of the departure destination
+            // childNodes[0] is the flight number
+            if (arrival.childNodes[0].id.toLowerCase().includes(input.toLowerCase()) || 
+            arrival.childNodes[3].id.toLowerCase().includes(input.toLowerCase())) {
+                searchedArrList.push(arrival);
+            }
+        });
+
+        // If we found anything in the search go here
+        if (searchedArrList.length > 0) {
+            removeTableV2(arrivalEl);
+            populateDomArrival(searchedArrList)
+        }
+    }
+
+    const populateDomArrival = (searchedArrivalList) => {
+        searchedArrivalList.forEach(row => {
+            const arrivalEl = document.getElementById('arrivalData');
+            arrivalEl.appendChild(row);
+        });
+    }
     
+    // Search for Departures
+    const searchDepEl = document.getElementById('searchDep');
+
+    searchDepEl.addEventListener('input', () => {
+        searchDepartures(searchDepEl.value);
+    });
+
+    const searchDepartures = (input) => {
+        //const departureList = document.querySelectorAll('.showDeparture');
+        let searchedDepList = [];
+
+        cachedDepartureData.forEach(departure => {
+            if(departure.childNodes[0].id.toLowerCase().includes(input.toLowerCase()) ||
+            departure.childNodes[3].id.toLowerCase().includes(input.toLowerCase())) {
+                searchedDepList.push(departure);
+            }
+        });
+
+        // If we found anything in the search go here
+        if(searchedDepList.length > 0) {
+            removeTableV2(departureEl);
+            populateDomDeparture(searchedDepList);
+        }
+    }
+
+    const populateDomDeparture = (searchedDepList) => {
+        searchedDepList.forEach(row => {
+            const depEl = document.getElementById('departureData');
+            depEl.appendChild(row);
+        });
+    }
 };  
 
 // Ensure the DOM has loaded before calling this function, ensure we're able to access the DOM elements correctly
