@@ -16,10 +16,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 //app.use(cors());
 app.use(cors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
+    origin: 'https://fi-fids.herokuapp.com'
   }));
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -372,16 +369,6 @@ app.get(apiPath + version + '/flights', (req, res) => {
 // filter = {keyProperty: valueProperty}
 // filter[No]=FI&filter[Name]=Finland
 app.get(apiPath + version + '/arrivals/flights', async (req, res) => {
-    if (req.protocol === 'http') {
-        // Handle HTTP request
-        console.log('HTTP request');
-      } else if (req.protocol === 'https') {
-        // Handle HTTPS request
-        console.log('HTTPS request');
-      } else {
-        // Handle other cases (e.g., no protocol specified)
-        console.log('Unknown protocol');
-      }
     try {
         // Call to the Isavia API to get flight information
         const response = await axios.get('https://www.isavia.is/fids/arrivals.aspx');
