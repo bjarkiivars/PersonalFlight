@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Personal project that aims to filter flight information.",
-  "main": "index.js",
+  "main": "backend/index.js",
   "scripts": {
     "test": "jest ./test/*.test.js",
-    "start": "node index.js"
+    "start": "node backend/index.js"
   },
   "keywords": [
     "Flight",
