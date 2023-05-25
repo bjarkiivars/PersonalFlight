@@ -1,29 +1,20 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const axios = require('axios');
 
-
 const app = express();
-
-const path = require('path');
-
 const apiPath = "/api/";
 const version = "v1";
-
 const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
-//app.use(cors());
+app.use(express.json());
 app.use(cors({
-    origin: 'https://fi-fids.herokuapp.com'
-  }));
+  origin: 'https://fi-fids.herokuapp.com'
+}));
+
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
