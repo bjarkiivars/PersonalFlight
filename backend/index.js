@@ -349,16 +349,6 @@ let flights = [
 
 
 app.get(apiPath + version + '/flights', (req, res) => {
-    if (req.protocol === 'http') {
-        // Handle HTTP request
-        console.log('HTTP request');
-      } else if (req.protocol === 'https') {
-        // Handle HTTPS request
-        console.log('HTTPS request');
-      } else {
-        // Handle other cases (e.g., no protocol specified)
-        console.log('Unknown protocol');
-      }
     // Use the map function to return specific data..
     let returnData = [];
     flights.forEach(object => {
@@ -382,6 +372,16 @@ app.get(apiPath + version + '/flights', (req, res) => {
 // filter = {keyProperty: valueProperty}
 // filter[No]=FI&filter[Name]=Finland
 app.get(apiPath + version + '/arrivals/flights', async (req, res) => {
+    if (req.protocol === 'http') {
+        // Handle HTTP request
+        console.log('HTTP request');
+      } else if (req.protocol === 'https') {
+        // Handle HTTPS request
+        console.log('HTTPS request');
+      } else {
+        // Handle other cases (e.g., no protocol specified)
+        console.log('Unknown protocol');
+      }
     try {
         // Call to the Isavia API to get flight information
         const response = await axios.get('https://www.isavia.is/fids/arrivals.aspx');
