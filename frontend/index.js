@@ -1,5 +1,5 @@
 // Here we are using constants as this should not be updated
-const API_URL = "http://localhost:3000/api/v1/";
+const API_URL = "https://fi-fids.herokuapp.com/api/v1/";
 
 // Cache all the rows
 let cachedArrivalData = [];
