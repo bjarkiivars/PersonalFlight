@@ -52,7 +52,7 @@
 }
 
 .checkOption > input {
-    width:30px;
+    width:2vh;
 }
 
 #departureData, #arrivalData > tr {
