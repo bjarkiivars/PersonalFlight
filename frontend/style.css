@@ -88,13 +88,16 @@
 }
 
 .searchOption > p {
-    font-size:25px;
+    font-size: 2vh;
+    position: relative;
+    top: 17%;
+    left: 0%;
 }
 
 .searchOption > input {
-    height:35px;
+    height: 20%;
     position: relative;
-    top: 20px;
+    top: 37%;
     left: 5px;
 }
 
