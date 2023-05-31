@@ -99,7 +99,7 @@
 }
 
 /* Adjust with the screen size, make it so that we display flex after a certain amount*/
-@media screen and (min-width: 1676px) {
+/*@media screen and (min-width: 1676px) {
     #contentWrapper {
         display: flex;
         gap: 1%;
@@ -109,4 +109,4 @@
     #arrivalWrapper, #depWrapper {
         width:49%;
     }
-}
+}*/
