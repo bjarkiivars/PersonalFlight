@@ -114,6 +114,6 @@
 
 @media screen and (max-width: 700px) {
     .checkOption > input {
-        margin-top:40%;
+        margin-bottom:0px;
     }
 }
