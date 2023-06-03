@@ -96,7 +96,7 @@
 }
 
 .searchOption > p {
-    font-size: 2vh;
+    font-size: 30px;
     position: relative;
     top: 17%;
     left: 0%;
@@ -105,7 +105,7 @@
 .searchOption > input {
     height: 20%;
     position: relative;
-    top: 37%;
+    /*top: 37%;*/
     left: 5px;
     margin-top: 36px;
 }
