@@ -104,14 +104,8 @@
 }
 
 /* Adjust with the screen size, make it so that we display flex after a certain amount*/
-/*@media screen and (min-width: 1676px) {
-    #contentWrapper {
-        display: flex;
-        gap: 1%;
-        flex-wrap: wrap;
+@media screen and (min-width: 600px) {
+    .checkOption > input {
+        margin-top:40%;
     }
-
-    #arrivalWrapper, #depWrapper {
-        width:49%;
-    }
-}*/
+}
