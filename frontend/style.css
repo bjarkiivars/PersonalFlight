@@ -104,7 +104,7 @@
 }
 
 /* Adjust with the screen size, make it so that we display flex after a certain amount*/
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 600px) {
     .checkOption > input {
         margin-top:40%;
     }
