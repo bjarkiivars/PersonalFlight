@@ -98,7 +98,7 @@
 .searchOption > p {
     font-size: 30px;
     position: relative;
-    top: 17%;
+    top: 2%;
     left: 0%;
 }
 
@@ -111,9 +111,9 @@
 }
 
 /* Adjust with the screen size, make it so that we display flex after a certain amount*/
-/*
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 700px) {
     .checkOption > input {
         margin-top:40%;
     }
-}*/
+}
