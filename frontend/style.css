@@ -37,10 +37,12 @@
     font-size: 4vh;
 }
 
-.checkOption{
-    display:flex;
-    /*flex-wrap: wrap;*/
+.checkOption {
+    display: flex;
+    /* flex-wrap: wrap; */
     justify-content: center;
+    width: 261px;
+    height: 130px;
 }
 
 #checkContainerDep, #checkContainerArr {
@@ -58,6 +60,7 @@
     width:50px;
     min-height:40px;
     min-width:40px;
+    margin-bottom: 36px;
 }
 
 #departureData, #arrivalData > tr {
@@ -104,6 +107,7 @@
     position: relative;
     top: 37%;
     left: 5px;
+    margin-top: 36px;
 }
 
 /* Adjust with the screen size, make it so that we display flex after a certain amount*/
