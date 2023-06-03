@@ -37,13 +37,16 @@
     font-size: 4vh;
 }
 
-.checkOption, #checkContainerDep, #checkContainerArr {
+.checkOption{
     display:flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     justify-content: center;
 }
 
 #checkContainerDep, #checkContainerArr {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap:20px;
 }
 
@@ -86,7 +89,7 @@
 
 .searchOption {
     display:flex;
-    flex-wrap:wrap;
+    /*flex-wrap:wrap;*/
 }
 
 .searchOption > p {
@@ -104,8 +107,9 @@
 }
 
 /* Adjust with the screen size, make it so that we display flex after a certain amount*/
+/*
 @media screen and (max-width: 600px) {
     .checkOption > input {
         margin-top:40%;
     }
-}
+}*/
